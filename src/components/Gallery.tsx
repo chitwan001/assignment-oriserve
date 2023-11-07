@@ -14,7 +14,10 @@ export default function Gallery() {
         setLoading(true);
         apiInstance.get('', {
             params: {
-                method: REQUEST_METHOD.RECENT
+                method: REQUEST_METHOD.RECENT,
+                safe_search:1,
+                per_page:20,
+                extras:"description"
             }
         }).then((res) => {
             const data = res.data as PhotoResponse;
@@ -42,8 +45,10 @@ export default function Gallery() {
     }
 
     return (
-        <div className={'flex gap-[8px] justify-around flex-wrap m-2'}>
-            <RenderPhotos/>
+        <div className={'grid max-h-[calc(100vh_-_6rem)] overflow-y-scroll m-2'}>
+            <div className={'flex gap-[8px] justify-around flex-wrap'}>
+                <RenderPhotos/>
+            </div>
         </div>
     )
 }

@@ -7,7 +7,10 @@ export type PhotoData = {
     owner: string,
     secret: string,
     server: string,
-    title: string
+    title: string,
+    description: {
+        _content: string
+    }
 }
 
 export type PhotoResponse = {
