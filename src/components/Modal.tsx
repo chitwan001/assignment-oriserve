@@ -1,5 +1,5 @@
 import {useModal} from "../context/ModalContext";
-import {createRef, useEffect, useState} from "react";
+import {createRef, useEffect} from "react";
 import Loading from "./Loading";
 
 export default function Modal() {
@@ -10,11 +10,12 @@ export default function Modal() {
     }
 
     useEffect(() => {
-        if (imageRef.current) {
-            imageRef.current.addEventListener('load', handleLoadEnd)
+        const elem = imageRef.current;
+        if (elem) {
+            elem.addEventListener('load', handleLoadEnd)
         }
         return () => {
-            imageRef.current?.removeEventListener('load', handleLoadEnd);
+            elem?.removeEventListener('load', handleLoadEnd);
         }
     }, [imageRef]);
 
