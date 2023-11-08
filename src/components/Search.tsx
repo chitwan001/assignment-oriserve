@@ -1,9 +1,14 @@
+import CachedTerms from "./CachedTerms";
+
 export default function Search() {
     return (
-        <div className={'grid w-80'}>
+        <div className={'grid relative w-80'}>
             <input type="text" id="search_query"
-                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                   placeholder="Search title or description" required/>
+                   className="bg-gray-50 peer text-gray-900 text-sm rounded-lg focus:rounded-b-none outline-0 block w-full p-2.5"
+                   placeholder="Search title or description or tags" required/>
+            <div className={'peer-focus:grid hidden rounded-b-lg shadow-searchResult w-full h-fit max-h-[300px] z-[99] absolute top-full left-0 bg-gray-50'}>
+                <CachedTerms/>
+            </div>
         </div>
-)
+    )
 }
