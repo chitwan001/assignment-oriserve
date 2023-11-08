@@ -51,8 +51,8 @@ export default function Gallery() {
     useEffect(() => {
         const option = {
             root: null,
-            rootMargin: "20px",
-            threshold: 0
+            rootMargin: "0px",
+            threshold: 1.0
         };
         const observer = new IntersectionObserver(handleObserver, option);
         if (loaderRef.current) observer.observe(loaderRef.current);
@@ -64,7 +64,10 @@ export default function Gallery() {
             <div className={'flex gap-[8px] justify-around flex-wrap'}>
                 <RenderPhotos/>
             </div>
-            <div className={'grid mt-3 w-full h-fit place-content-center'} ref={loaderRef}>
+            <div ref={loaderRef} className={''}>
+
+            </div>
+            <div className={'grid mt-3 w-full h-fit place-content-center'}>
                 {
                     !initialLoading && successiveLoading && (
                         <Loading/>
