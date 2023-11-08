@@ -1,7 +1,7 @@
 import useLocalStorage from "../hooks/useLocalStorage";
 
 export default function CachedTerms() {
-    const {terms} = useLocalStorage('flickr-searched-terms');
+    const {terms} = useLocalStorage();
 
     const RenderTerms = () => {
         if (terms.length > 0) {

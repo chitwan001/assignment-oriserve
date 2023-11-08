@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 
-export default function useLocalStorage(key: string) {
+export default function useLocalStorage() {
     const [terms, setTerms] = useState<string[]>([]);
 
     const setTermsIntoStorage = (value: string[]) => {
@@ -12,21 +12,25 @@ export default function useLocalStorage(key: string) {
                 commaSeperatedTerms += val
             }
         })
-        localStorage.setItem(key, commaSeperatedTerms);
+        const oldTerms = getTermsFromStorage();
+
+        if(oldTerms){
+            localStorage.setItem('flickr-searched-terms', oldTerms+','+commaSeperatedTerms);
+        }else localStorage.setItem('flickr-searched-terms', commaSeperatedTerms);
         setTerms([...terms, ...value]);
     }
 
     const getTermsFromStorage = () => {
-        const commaSeperatedTerms = localStorage.getItem(key);
+        return localStorage.getItem('flickr-searched-terms')
+    }
+
+    useEffect(() => {
+        const commaSeperatedTerms = getTermsFromStorage()
         let terms: string[] = []
         if (commaSeperatedTerms) {
             terms = commaSeperatedTerms.split(',');
         }
         setTerms(terms);
-    }
-
-    useEffect(() => {
-        getTermsFromStorage()
     }, []);
 
     return {terms, setTermsIntoStorage}
