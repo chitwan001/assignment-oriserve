@@ -15,6 +15,8 @@ export default function Gallery() {
         const data = res.data as PhotoResponse;
         setPhotoData([...photoData, ...data.photos.photo])
         if (initialLoading) setInitialLoading(false)
+        //although adding safe_search parameter, safe search is not working.
+        // Seems API has not provided any such functionality for recent searches.
     }, {
         method: REQUEST_TYPE.RECENT,
         safe_search: 1,
