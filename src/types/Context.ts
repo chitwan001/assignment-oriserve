@@ -7,5 +7,7 @@ export type ApiContextType = {
 
 export type ModalContextType = {
     photoData: PhotoData | null,
-    updatePhotoData: (updateData: PhotoData | null) => void
+    updatePhotoData: (updateData: PhotoData | null) => void,
+    loading: boolean,
+    updateLoadingStatus: (status: boolean) => void
 }
